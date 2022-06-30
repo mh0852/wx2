@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="xml" type="xmlType"/>
+  <xs:complexType name="xmlType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="ToUserName"/>
+      <xs:element type="xs:string" name="FromUserName"/>
+      <xs:element type="xs:string" name="CreateTime"/>
+      <xs:element type="xs:string" name="MsgType"/>
+      <xs:element type="xs:string" name="MsgId"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
