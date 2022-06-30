@@ -8,7 +8,7 @@
     </insert>
 
     <select id="selectWeatherCode" parameterType="java.lang.String" resultType="java.lang.String">
-        select city_code from weather_code where city_name like CONCAT('%',#{city_name},'%')
+        select city_code from weather_code where city_name like CONCAT('%',#{city_name},'%') limit 1
     </select>
 
 </mapper>
