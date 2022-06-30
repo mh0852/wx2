@@ -32,7 +32,7 @@ public class CoreServiceImpl implements CoreService {
         try {
             // xml请求解析
             Map<String, String> requestMap = MessageUtil.parseXml(request);
-            System.out.println(requestMap.toString());
+            log.info(requestMap.toString());
 
             // 发送方帐号（open_id）
             String fromUserName = requestMap.get("FromUserName");

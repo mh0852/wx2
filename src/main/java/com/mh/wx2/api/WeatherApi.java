@@ -23,7 +23,7 @@ public class WeatherApi {
         try {
             RestTemplate restTemplate = new RestTemplate();
             WeatherDto dto = restTemplate.getForObject(SOJSON_WEATHER_URL , WeatherDto.class,id);
-            System.out.println(dto.toString());
+            log.info(dto.toString());
             if(dto != null && dto.getStatus() == 200){
                 return dto;
             }else{
