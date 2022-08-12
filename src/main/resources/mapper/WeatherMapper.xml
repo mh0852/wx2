@@ -1,0 +1,26 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mh.wx2.mapper.WeatherMapper">
+    <!-- useGeneratedKeys:返回主键
+         keyProperty:返回的主键对应实体类的属性字段
+    -->
+    <insert id="insertWeatherCode" parameterType="com.mh.wx2.model.weather.CityCode">
+        insert into weather_code values(#{id},#{pid},#{city_code},#{city_name},#{post_code},#{area_code},#{ctime})
+    </insert>
+
+    <select id="selectWeatherCode" parameterType="java.lang.String" resultType="java.lang.String">
+        select city_code from weather_code where city_name like CONCAT('%',#{city_name},'%') limit 1
+    </select>
+
+    <resultMap id="AllWeatherCodeResult" type="java.lang.String" >
+        <result column="city_code" property="city_code" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectAllWeatherCode" resultMap="AllWeatherCodeResult">
+        select distinct(city_code) as city_code from weather_code where IFNULL(city_code, '') != ''
+    </select>
+
+    <insert id="insertWeatherInfo" parameterType="com.mh.wx2.model.weather.WeatherInfoModel">
+        insert into tm_weather values(#{fdate},#{ftime},#{city},#{citykey},#{parent},#{updateTime},#{shidu},#{pm25},#{pm10},#{quality},#{wendu},#{ganmao},#{high},#{low},#{ymd},#{week},#{sunrise},#{sunset},#{aqi},#{fx},#{fl},#{type},#{notice})
+    </insert>
+
+</mapper>

@@ -5,7 +5,7 @@ import com.mh.wx2.constant.Constant;
 import com.mh.wx2.model.msg.resp.TextMessage;
 import com.mh.wx2.model.weather.WeatherDto;
 import com.mh.wx2.service.CoreService;
-import com.mh.wx2.service.WeatherCodeService;
+import com.mh.wx2.service.WeatherService;
 import com.mh.wx2.utils.MessageUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class CoreServiceImpl implements CoreService {
     private WeatherApi weatherApi;
 
     @Autowired
-    private WeatherCodeService weatherCodeService;
+    private WeatherService weatherService;
 
 
     @Override
@@ -55,10 +55,13 @@ public class CoreServiceImpl implements CoreService {
                 //天气城市码值导入数据库
 //                importcode.insert();
 
-                String city_code = weatherCodeService.selectWeatherCode(content);
+                String city_code = weatherService.selectWeatherCode(content);
                 WeatherDto weatherDto = weatherApi.getById(city_code);
                 if(weatherDto != null){
                     String weather_string = weatherDto.toString();
+
+                    //拼接信息
+//                    weatherDto.get
 
                     textMessage.setContent(weather_string);
                     respMessage = MessageUtil.textMessageToXml(textMessage);

@@ -1,9 +1,10 @@
 package com.mh.wx2.service.impl;
 
 import com.mh.wx2.constant.Constant;
-import com.mh.wx2.mapper.WeatherCodeMapper;
+import com.mh.wx2.mapper.WeatherMapper;
 import com.mh.wx2.model.weather.CityCode;
-import com.mh.wx2.service.WeatherCodeService;
+import com.mh.wx2.model.weather.WeatherInfoModel;
+import com.mh.wx2.service.WeatherService;
 import com.mh.wx2.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,10 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class WeatherCodeServiceImpl implements WeatherCodeService {
+public class WeatherServiceImpl implements WeatherService {
 
     @Autowired
-    private WeatherCodeMapper weatherCodeMapper;
+    private WeatherMapper weatherMapper;
 
     public void insert() throws IOException {
 
@@ -43,13 +44,23 @@ public class WeatherCodeServiceImpl implements WeatherCodeService {
         System.out.println(list.size());
         Iterator<CityCode> cityCode = list.iterator();
         while (cityCode.hasNext()){
-            weatherCodeMapper.insertWeatherCode(cityCode.next());
+            weatherMapper.insertWeatherCode(cityCode.next());
         }
 
     }
 
     @Override
     public String selectWeatherCode(String cityname) {
-        return weatherCodeMapper.selectWeatherCode(cityname);
+        return weatherMapper.selectWeatherCode(cityname);
+    }
+
+    @Override
+    public List<String> selectAllWeatherCode() {
+        return weatherMapper.selectAllWeatherCode();
+    }
+
+    @Override
+    public void insertWeatherInfo(WeatherInfoModel weatherInfoModel) throws IOException {
+        weatherMapper.insertWeatherInfo(weatherInfoModel);
     }
 }

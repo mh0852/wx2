@@ -14,12 +14,12 @@ import java.util.concurrent.ExecutorService;
 
 @Component
 public class TencentSharesController {
-    public static Logger log = Logger.getLogger(Scheduled.class);
+    public static Logger log = Logger.getLogger(TencentSharesController.class);
 
     @Autowired
     private TencentSharesApi tencentSharesApi ;
 
-    @Scheduled(cron = "5 * * * * *")
+    @Scheduled(cron = "5 12 * * * *")
     public void dosomething(){
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
