@@ -19,7 +19,7 @@ public class TencentSharesController {
     @Autowired
     private TencentSharesApi tencentSharesApi ;
 
-    @Scheduled(cron = "5 12 * * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     public void dosomething(){
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());

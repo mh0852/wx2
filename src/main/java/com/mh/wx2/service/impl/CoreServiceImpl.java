@@ -58,7 +58,21 @@ public class CoreServiceImpl implements CoreService {
                 String city_code = weatherService.selectWeatherCode(content);
                 WeatherDto weatherDto = weatherApi.getById(city_code);
                 if(weatherDto != null){
-                    String weather_string = weatherDto.toString();
+                    String weather_string = weatherDto.getCityInfo().getCity()
+                    + "\n更新时间："+ weatherDto.getCityInfo().getUpdateTime()
+                        +"\n天气状况：" + weatherDto.getData().getForecast().get(0).getType()
+                            + " " + weatherDto.getData().getQuality()
+                            + "\n温度：" + weatherDto.getData().getWendu()
+                            + "\n最高温度：" + weatherDto.getData().getForecast().get(0).getHigh()
+                            + "\n最低温度：" + weatherDto.getData().getForecast().get(0).getLow()
+                            + "\n湿度：" + weatherDto.getData().getShidu()
+                            + "\nPM2.5：" + weatherDto.getData().getPm25()
+                            + "\nPM10："+ weatherDto.getData().getPm10()
+                            + "\n日出：" + weatherDto.getData().getForecast().get(0).getSunrise()
+                            + "\n日落：" + weatherDto.getData().getForecast().get(0).getSunset()
+                            + "\n风向风力：" + weatherDto.getData().getForecast().get(0).getFx()+weatherDto.getData().getForecast().get(0).getFl()
+                            + "\n感冒提醒：" + weatherDto.getData().getGanmao()
+                            + "\n温馨提示：" + weatherDto.getData().getForecast().get(0).getNotice();
 
                     //拼接信息
 //                    weatherDto.get
